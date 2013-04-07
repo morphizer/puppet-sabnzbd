@@ -41,7 +41,8 @@ class sabnzbd (
   $complete_dir   = $::sabnzbd::params::complete_dir,
   $login_username = $::sabnzbd::params::login_username,
   $login_password = $::sabnzbd::params::login_password,
-  $servers        = {}
+  $servers        = {},
+  $categories     = {}
 ) inherits sabnzbd::params {
 
   # on ubuntu it's available in official repositories since jaunty

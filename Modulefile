@@ -1,5 +1,5 @@
 name    'morphizer-sabnzbd'
-version '0.0.1'
+version '0.1.0'
 author 'morphizer'
 license 'Apache License, Version 2.0'
 summary 'SABnzbd news reader install and configure'

@@ -6,12 +6,12 @@ __version__ = 19
 [[<%= key %>]]
 name = <%= key %>
 host = <%= value_hash['server_url'] %>
-enable = <%= value_hash['enabled'] %> # defaulted to 1
-username = "<%= value_hash['username'] %>" # defaulted to blank
-password = "<%= value_hash['password'] %>" # defaulted to blank
+enable = <%= value_hash['enabled'] || '1' %> 
+username = "<%= value_hash['username'] || '' %>"
+password = "<%= value_hash['password'] || '' %>"
 connections = <%= value_hash['connections'] %>
-ssl = <%= value_hash['ssl'] %>
-port = <%= value_hash['port'] %> # default 119
+ssl = <%= value_hash['ssl'] || '0' %>
+port = <%= value_hash['port'] || '119' %>
 timeout = 120
 fillserver = 0
 optional = 0
@@ -26,6 +26,15 @@ name = *
 script = None
 newzbin = ""
 dir = ""
+<% categories.each_pair do |key, value_hash| -%>
+[[<%= key %>]]
+priority = <%= value_hash['priority'] || '0' %>
+pp = <%= value_hash['postprocessing'] || '3' %>
+name = <%= key %>
+script = None
+newzbin = ""
+dir = <%= value_hash['directory'] %>
+<% end -%>
 # SABnzbd settings
 [misc]
 https_port = <%= https_port %>

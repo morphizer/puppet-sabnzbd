@@ -35,5 +35,19 @@ In your manifest/node definition, create a hash with your news servers
     servers => $server_list,
   }
 ```
+Optionally, you can create a hash to create custom categories.
 
+```puppet
+  $categories = {
+    tv => { 'directory' => 'TV' },
+    movies => { 'directory' => 'Movies',
+                'priority'  => '1',
+    }
+  }
 
+  class { 'sabnzbd':
+    servers => $server_list,
+    categories => $categories,
+  }
+```
+This won't check or create the directories specified, you have to create a file resource for that elsewhere.
