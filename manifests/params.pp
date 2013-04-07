@@ -1,9 +1,7 @@
-# == Class: sabnzbd
+# == Class: sabnzbd::params
 #
-# Full description of class sabnzbd here.
-#
-# === Parameters
-#
+# Provides some sane default settings for getting started with
+# sabnzbd.
 class sabnzbd::params {
 
   # These settings allow sabnzbd to start

@@ -1,26 +1,70 @@
 # == Class: sabnzbd
 #
-# Full description of class sabnzbd here.
+# This class installs and configures sabnzbd.
 #
 # === Parameters
 #
-# Document parameters here.
-#
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# [*user*]
+#   Specify the user to run sickbeard as. The user will be automatically
+#   created. Defaults to "sabnzbd".
+# [*config_path*]
+#   Full path to the config file to use. Defaults to sabnzbd user's home
+#   directory.
+# [*host*]
+#   The IP address sabnzbd should listen on. Defaults to 0.0.0.0
+# [*port*]
+#   Port to listen on. Defaults to 8180.
+# [*extraopts*]
+#   An optional set of parameters to pass to the daemon
+# [*enable_https*]
+#   Set to 1 to enable https. Defaults to 0 (disabled)
+# [*https_port*]
+#   https port to use if enabled. Defaults to 9190.
+# [*api_key*]
+#   Set the api key to use. A default key is used.
+# [*nzb_key*]
+#   API key for just nzb interactions.
+# [*download_dir*]
+#   Temporary download location. Defaults to /home/sabnzbd/Downloads/incomplete
+# [*complete_dir*]
+#   Completed download location. Defaults to /home/sabnzbd/Downloads/complete
+# [*login_username*]
+#   Username to use for password protection of sabnzbd. Default is none.
+# [*login_password*]
+#   Password to use for password protection of sabnzbd. Default is none.
+# [*servers*]
+#   A user supplied hash of usenet servers to connect to. *required*
+# [*categories*]
+#   A user supplied hash of an optional set of categories to setup
 #
 # === Variables
 #
-# Here you should define a list of variables that this module would require.
-#
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if it
+# [*unrar*]
+#   The package to select for unraring files. unrar-free on debian is used,
+#   but this has problems with some RAR files. Will add a PPA in future.
 #
 # === Examples
 #
-#  class { sabnzbd:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
+#  $servers = {
+#    myprovider => { 'server_url'  => 'news.provider1.com',
+#                    'port'        => '119',
+#                    'connections' => '10',
+#    },
+#    backup => { 'server_url'  => 'news.provider2.com',
+#                'port'        => '119',
+#                'connections' => '5',
+#                'backup_server' => '1',
+#     }
+#  }
+#
+#  $categories = {
+#    tv     => { 'directory' => 'TV' },
+#    movies => { 'directory' => '/opt/share/movies' },
+#  }
+#
+#  class { 'sabnzbd':
+#    servers  => $servers,
+#    categories => $categories,
 #  }
 #
 # === Authors
