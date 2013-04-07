@@ -34,7 +34,7 @@ class sabnzbd (
   $port           = $::sabnzbd::params::port,
   $extraopts      = undef,
   $enable_https   = $::sabnzbd::params::enable_https,
-  $https_port     = $::sabnzbd::params::9190,
+  $https_port     = $::sabnzbd::params::https_port,
   $api_key        = $::sabnzbd::params::api_key,
   $nzb_key        = $::sabnzbd::params::nzb_key,
   $download_dir   = $::sabnzbd::params::download_dir,
