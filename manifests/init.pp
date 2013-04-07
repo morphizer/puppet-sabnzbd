@@ -44,9 +44,8 @@ class sabnzbd (
   $servers        = {}
 ) inherits sabnzbd::params {
 
-  if $servers == undef { fail('Please define news servers') }
-
   # on ubuntu it's available in official repositories since jaunty
+  # though it's an old version. Will add the custom ppa soon.
   package { 'sabnzbdplus':
     ensure  => installed,
   }
@@ -60,6 +59,13 @@ class sabnzbd (
     ensure  => installed,
     require => Package['sabnzbdplus'],
   }
+
+  # We also require the unrar program
+  $unrar = $::operatingsystem ? {
+    'Debian' => 'unrar-free',
+    default  => 'unrar',
+  }
+  package { $unrar: ensure => installed }
 
   user { $::sabnzbd::params::user:
     ensure     => present,
