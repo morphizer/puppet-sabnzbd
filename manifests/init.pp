@@ -73,11 +73,20 @@ class sabnzbd (
     ensure  => file,
     require => Package['sabnzbdplus'],
     content => template('sabnzbd/sabnzbdplus.erb'),
+    notify  => Service['sabnzbdplus'],
   }
 
   file { $config_path:
     ensure  => file,
     require => Package['sabnzbdplus'],
     content => template('sabnzbd/sabnzbd.ini.erb'),
+    notify  => Service['sabnzbdplus'],
+  }
+
+  service { 'sabnzbdplus':
+    ensure     => running,
+    enable     => true,
+    hasrestart => true,
+    require    => Package['sabnzbdplus'],
   }
 }
