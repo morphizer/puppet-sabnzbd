@@ -6,12 +6,12 @@
 # --daemon option is always used, and the program is
 # started under the account of $USER, as set below.
 #
-USER=<%= user %>
+USER=<%= @user %>
 
-CONFIG=<%= config_path %>
+CONFIG=<%= @config_path %>
 
-HOST=<%= host %>
-PORT=<%= port %>
+HOST=<%= @host %>
+PORT=<%= @port %>
 <% if @extraopts -%>
 EXTRAOPTS=<%= extraopts %>
 <% end -%>

@@ -2,7 +2,7 @@
 __version__ = 19
 # News server definitions
 [servers]
-<% server_list.each_pair do |key, value_hash| -%>
+<% @servers.each_pair do |key, value_hash| -%>
 [[<%= key %>]]
 name = <%= key %>
 host = <%= value_hash['server_url'] %>
@@ -26,7 +26,7 @@ name = *
 script = None
 newzbin = ""
 dir = ""
-<% categories.each_pair do |key, value_hash| -%>
+<% @categories.each_pair do |key, value_hash| -%>
 [[<%= key %>]]
 priority = <%= value_hash['priority'] || '0' %>
 pp = <%= value_hash['postprocessing'] || '3' %>
@@ -37,16 +37,16 @@ dir = <%= value_hash['directory'] %>
 <% end -%>
 # SABnzbd settings
 [misc]
-https_port = <%= https_port %>
-api_key = <%= api_key %>
-nzb_key = <%= nzb_key %>
-port = <%= port %>
-host = <%= host %>
-username = <%= login_username %>
-password = <%= login_password %>
-enable_https = <%= enable_https %>
-download_dir = <%= download_dir %>
-complete_dir = <%= complete_dir %>
+https_port = <%= @https_port %>
+api_key = <%= @api_key %>
+nzb_key = <%= @nzb_key %>
+port = <%= @port %>
+host = <%= @host %>
+username = <%= @login_username %>
+password = <%= @login_password %>
+enable_https = <%= @enable_https %>
+download_dir = <%= @download_dir %>
+complete_dir = <%= @complete_dir %>
 queue_complete = ""
 folder_rename = 1
 allow_64bit_tools = 1
