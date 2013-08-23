@@ -132,6 +132,8 @@ class sabnzbd (
     require => Package['sabnzbdplus'],
     content => template('sabnzbd/sabnzbd.ini.erb'),
     notify  => Service['sabnzbdplus'],
+    owner   => $user,
+    group   => $user
   }
 
   service { 'sabnzbdplus':
