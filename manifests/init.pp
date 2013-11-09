@@ -89,6 +89,13 @@ class sabnzbd (
   $categories     = {}
 ) inherits sabnzbd::params {
 
+  # make it run apt-get update first
+  exec { "apt-update":
+    command => "/usr/bin/apt-get update"
+  }
+  
+  Exec["apt-update"] -> Package <| |>
+
   # on ubuntu it's available in official repositories since jaunty
   # though it's an old version. Will add the custom ppa soon.
   package { 'sabnzbdplus':
