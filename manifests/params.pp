@@ -21,4 +21,10 @@ class sabnzbd::params {
   # Login settings for sabnzbd frontend, blank means no login
   $login_username     = ''
   $login_password     = ''
+
+  # Theme settings
+  $web_dir    = 'Plush'
+  $web_color  = '""'
+  $web_dir2   = '""'
+  $web_color2 = '""'
 }

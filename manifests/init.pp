@@ -36,6 +36,14 @@
 #   A user supplied hash of usenet servers to connect to. *required*
 # [*categories*]
 #   A user supplied hash of an optional set of categories to setup
+# [*web_dir*]
+#   Web interface. Name of the theme to use. Defaults to "Plush".
+# [*web_color*]
+#   Color option for web interface theme. Default is none.
+# [*web_dir2*]
+#   Web interface. Name of the secondary theme to use. Default is none.
+# [*web_color2*]
+#   Color option for the secondary web interface theme. Default is none.
 #
 # === Variables
 #
@@ -85,6 +93,10 @@ class sabnzbd (
   $complete_dir   = $::sabnzbd::params::complete_dir,
   $login_username = $::sabnzbd::params::login_username,
   $login_password = $::sabnzbd::params::login_password,
+  $web_dir        = $::sabnzbd::params::web_dir,
+  $web_color      = $::sabnzbd::params::web_color,
+  $web_dir2       = $::sabnzbd::params::web_dir2,
+  $web_color2     = $::sabnzbd::params::web_color2,
   $servers        = {},
   $categories     = {}
 ) inherits sabnzbd::params {
@@ -93,7 +105,7 @@ class sabnzbd (
   exec { "apt-update":
     command => "/usr/bin/apt-get update"
   }
-  
+
   Exec["apt-update"] -> Package <| |>
 
   # on ubuntu it's available in official repositories since jaunty
