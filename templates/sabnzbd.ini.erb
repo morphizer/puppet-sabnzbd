@@ -12,10 +12,10 @@ password = "<%= value_hash['password'] || '' %>"
 connections = <%= value_hash['connections'] %>
 ssl = <%= value_hash['ssl'] || '0' %>
 port = <%= value_hash['port'] || '119' %>
-timeout = 120
-fillserver = 0
-optional = 0
-retention = 0
+timeout = <%= value_hash['timeout'] || '120' %>
+fillserver = <%= value_hash['fillserver'] || '0' %>
+optional = <%= value_hash['optional'] || '0' %>
+retention = <%= value_hash['retention'] || '0' %>
 <% end -%>
 # Category definitions
 [categories]
