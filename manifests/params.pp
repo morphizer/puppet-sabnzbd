@@ -27,4 +27,6 @@ class sabnzbd::params {
   $web_color  = '""'
   $web_dir2   = '""'
   $web_color2 = '""'
+
+  $permissions = '""'
 }

@@ -97,6 +97,7 @@ class sabnzbd (
   $web_color      = $::sabnzbd::params::web_color,
   $web_dir2       = $::sabnzbd::params::web_dir2,
   $web_color2     = $::sabnzbd::params::web_color2,
+  $permissions    = $::sabnzbd::params::permissions,
   $servers        = {},
   $categories     = {}
 ) inherits sabnzbd::params {
