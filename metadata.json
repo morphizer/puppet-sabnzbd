@@ -1,0 +1,14 @@
+{
+  "name": "morphizer-sabnzbd",
+  "version": "0.1.2",
+  "author": "morphizer",
+  "summary": "SABnzbd news reader install and configure",
+  "license": "Apache License, Version 2.0",
+  "source": "https://github.com/morphizer/puppet-sabnzbd",
+  "project_page": "http://github.com/morphizer/puppet-sabnzbd",
+  "issues_url": "https://github.com/morphizer/puppet-sabnzbd/issues",
+  "description": "SABnzbd is an Open Source Binary Newsreader written in Python. This module installs and configures it for use on Ubuntu/Debian based machines",
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">=4.5.0 <5.0.0" }
+  ]
+}

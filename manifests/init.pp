@@ -105,6 +105,8 @@ class sabnzbd (
   $categories     = {}
 ) inherits sabnzbd::params {
 
+  $config_dir = dirname($config_path)
+
   # make it run apt-get update first
   exec { "apt-update":
     command => "/usr/bin/apt-get update"
@@ -141,15 +143,12 @@ class sabnzbd (
     system     => true,
     managehome => true,
     require    => Package['sabnzbdplus'],
-  }
-
-  file { '/etc/default/sabnzbdplus':
-    ensure  => file,
-    require => Package['sabnzbdplus'],
-    content => template('sabnzbd/sabnzbdplus.erb'),
-    notify  => Service['sabnzbdplus'],
-  }
-
+  } ->
+  file {$config_dir:
+    ensure => 'directory',
+    owner  => $user,
+    group  => $user
+  } ->
   file { $config_path:
     ensure  => file,
     require => Package['sabnzbdplus'],
@@ -157,6 +156,13 @@ class sabnzbd (
     notify  => Service['sabnzbdplus'],
     owner   => $user,
     group   => $user
+  }
+
+  file { '/etc/default/sabnzbdplus':
+    ensure  => file,
+    require => Package['sabnzbdplus'],
+    content => template('sabnzbd/sabnzbdplus.erb'),
+    notify  => Service['sabnzbdplus'],
   }
 
   service { 'sabnzbdplus':
