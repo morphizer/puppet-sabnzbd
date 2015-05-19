@@ -17,6 +17,7 @@ class sabnzbd::params {
   $nzb_key      = 'b9606ae4f0424a23aad94f1a30cc5b8d'
   $download_dir = 'Downloads/incomplete'
   $complete_dir = 'Downloads/complete'
+  $dirscan_dir  = ''
 
   # Login settings for sabnzbd frontend, blank means no login
   $login_username     = ''
@@ -27,4 +28,6 @@ class sabnzbd::params {
   $web_color  = '""'
   $web_dir2   = '""'
   $web_color2 = '""'
+
+  $permissions = '""'
 }

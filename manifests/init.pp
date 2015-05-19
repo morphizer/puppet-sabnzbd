@@ -28,6 +28,8 @@
 #   Temporary download location. Defaults to /home/sabnzbd/Downloads/incomplete
 # [*complete_dir*]
 #   Completed download location. Defaults to /home/sabnzbd/Downloads/complete
+# [*dirscan_dir*]
+#   The directory to watch for nzb files. No default.
 # [*login_username*]
 #   Username to use for password protection of sabnzbd. Default is none.
 # [*login_password*]
@@ -91,15 +93,19 @@ class sabnzbd (
   $nzb_key        = $::sabnzbd::params::nzb_key,
   $download_dir   = $::sabnzbd::params::download_dir,
   $complete_dir   = $::sabnzbd::params::complete_dir,
+  $dirscan_dir    = $::sabnzbd::params::dirscan_dir,
   $login_username = $::sabnzbd::params::login_username,
   $login_password = $::sabnzbd::params::login_password,
   $web_dir        = $::sabnzbd::params::web_dir,
   $web_color      = $::sabnzbd::params::web_color,
   $web_dir2       = $::sabnzbd::params::web_dir2,
   $web_color2     = $::sabnzbd::params::web_color2,
+  $permissions    = $::sabnzbd::params::permissions,
   $servers        = {},
   $categories     = {}
 ) inherits sabnzbd::params {
+
+  $config_dir = dirname($config_path)
 
   # make it run apt-get update first
   exec { "apt-update":
@@ -137,15 +143,12 @@ class sabnzbd (
     system     => true,
     managehome => true,
     require    => Package['sabnzbdplus'],
-  }
-
-  file { '/etc/default/sabnzbdplus':
-    ensure  => file,
-    require => Package['sabnzbdplus'],
-    content => template('sabnzbd/sabnzbdplus.erb'),
-    notify  => Service['sabnzbdplus'],
-  }
-
+  } ->
+  file {$config_dir:
+    ensure => 'directory',
+    owner  => $user,
+    group  => $user
+  } ->
   file { $config_path:
     ensure  => file,
     require => Package['sabnzbdplus'],
@@ -153,6 +156,13 @@ class sabnzbd (
     notify  => Service['sabnzbdplus'],
     owner   => $user,
     group   => $user
+  }
+
+  file { '/etc/default/sabnzbdplus':
+    ensure  => file,
+    require => Package['sabnzbdplus'],
+    content => template('sabnzbd/sabnzbdplus.erb'),
+    notify  => Service['sabnzbdplus'],
   }
 
   service { 'sabnzbdplus':
